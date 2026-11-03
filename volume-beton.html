@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Volume Beton | INR Engineer</title>
+</head>
+<body>
+  <h1>Kalkulator Volume Beton</h1>
+
+  <p>Panjang (m):</p>
+  <input type="number" id="panjang" placeholder="Contoh: 5">
+
+  <p>Lebar (m):</p>
+  <input type="number" id="lebar" placeholder="Contoh: 3">
+
+  <p>Tebal (m):</p>
+  <input type="number" id="tebal" placeholder="Contoh: 0.12">
+
+  <br><br>
+  <button onclick="hitung()">Hitung</button>
+
+  <h2 id="hasil"></h2>
+
+  <script>
+    function hitung() {
+      var p = parseFloat(document.getElementById("panjang").value);
+      var l = parseFloat(document.getElementById("lebar").value);
+      var t = parseFloat(document.getElementById("tebal").value);
+
+      if (isNaN(p) || isNaN(l) || isNaN(t)) {
+        document.getElementById("hasil").innerText = "Isi semua kolom dulu ya.";
+        return;
+      }
+
+      var volume = p * l * t;
+      document.getElementById("hasil").innerText = "Volume beton: " + volume.toFixed(3) + " m³";
+    }
+  </script>
+</body>
+</html>
