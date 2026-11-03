@@ -3,11 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumpulan kalkulator teknik sipil online gratis untuk insinyur dan kontraktor. By INR Engineer.">
   <title>Kalkulator Sipil | INR Engineer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .hero {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 8px 20px 36px;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin: 0 0 8px;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 16px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 0 0 16px;
+    }
+
+    .daftar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .kartu {
+      display: block;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: inherit;
+      border-top: 4px solid #f97316;
+    }
+
+    .kartu:hover {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    .kartu h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #0f172a;
+    }
+
+    .kartu p {
+      margin: 0;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .segera {
+      opacity: 0.6;
+      border-top-color: #94a3b8;
+    }
+
+    .slot-iklan {
+      margin: 20px 0;
+      min-height: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #64748b;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>INR Engineer</h1>
-  <p>Kalkulator Sipil Praktis untuk Insinyur & Kontraktor</p>
-  <a href="volume-beton.html">Kalkulator Volume Beton</a>
+  <header>
+    <a href="index.html">INR Engineer</a>
+  </header>
+
+  <section class="hero">
+    <h1>Kalkulator Sipil</h1>
+    <p>Kalkulator praktis untuk insinyur &amp; kontraktor</p>
+  </section>
+
+  <main>
+    <h2>Daftar Kalkulator</h2>
+
+    <div class="daftar">
+      <a class="kartu" href="volume-beton.html">
+        <h3>Volume Beton</h3>
+        <p>Hitung volume beton dari panjang, lebar, dan tebal.</p>
+      </a>
+
+      <div class="kartu segera">
+        <h3>Besi Tulangan</h3>
+        <p>Segera hadir.</p>
+      </div>
+
+      <div class="kartu segera">
+        <h3>Volume Galian</h3>
+        <p>Segera hadir.</p>
+      </div>
+    </div>
+
+    <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
+    <div class="slot-iklan"></div>
+  </main>
+
+  <footer>
+    Dibuat oleh INR Engineer
+  </footer>
 </body>
 </html>
