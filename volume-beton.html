@@ -3,39 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kalkulator volume beton online gratis. Hitung volume beton dari panjang, lebar, dan tebal. By INR Engineer.">
   <title>Kalkulator Volume Beton | INR Engineer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    main {
+      max-width: 480px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .kartu {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background: #f97316;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ea580c;
+    }
+
+    #hasil {
+      margin-top: 20px;
+      padding: 16px;
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      display: none;
+    }
+
+    .slot-iklan {
+      margin: 20px 0;
+      min-height: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #64748b;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Kalkulator Volume Beton</h1>
+  <header>
+    <a href="index.html">INR Engineer</a>
+  </header>
 
-  <p>Panjang (m):</p>
-  <input type="number" id="panjang" placeholder="Contoh: 5">
+  <main>
+    <div class="kartu">
+      <h1>Kalkulator Volume Beton</h1>
 
-  <p>Lebar (m):</p>
-  <input type="number" id="lebar" placeholder="Contoh: 3">
+      <label for="panjang">Panjang (m)</label>
+      <input type="text" inputmode="decimal" id="panjang" placeholder="Contoh: 5">
 
-  <p>Tebal (m):</p>
-  <input type="number" id="tebal" placeholder="Contoh: 0.12">
+      <label for="lebar">Lebar (m)</label>
+      <input type="text" inputmode="decimal" id="lebar" placeholder="Contoh: 3">
 
-  <br><br>
-  <button onclick="hitung()">Hitung</button>
+      <label for="tebal">Tebal (m)</label>
+      <input type="text" inputmode="decimal" id="tebal" placeholder="Contoh: 0,12">
 
-  <h2 id="hasil"></h2>
+      <button onclick="hitung()">Hitung</button>
+
+      <div id="hasil"></div>
+    </div>
+
+    <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
+    <div class="slot-iklan"></div>
+  </main>
+
+  <footer>
+    Dibuat oleh INR Engineer
+  </footer>
 
   <script>
+    function bacaAngka(id) {
+  var teks = document.getElementById(id).value;
+  teks = teks.replace(/\./g, "");   // hapus titik (pemisah ribuan)
+  teks = teks.replace(",", ".");    // koma jadi titik desimal
+  return parseFloat(teks);
+}
     function hitung() {
-      var p = parseFloat(document.getElementById("panjang").value);
-      var l = parseFloat(document.getElementById("lebar").value);
-      var t = parseFloat(document.getElementById("tebal").value);
+      var p = bacaAngka("panjang");
+      var l = bacaAngka("lebar");
+      var t = bacaAngka("tebal");
+      var kotak = document.getElementById("hasil");
+
+      kotak.style.display = "block";
 
       if (isNaN(p) || isNaN(l) || isNaN(t)) {
-        document.getElementById("hasil").innerText = "Isi semua kolom dulu ya.";
+        kotak.innerText = "Isi semua kolom dulu ya.";
         return;
       }
 
       var volume = p * l * t;
-      document.getElementById("hasil").innerText = "Volume beton: " + volume.toFixed(3) + " m³";
-    }
+      kotak.innerText = "Volume beton: " + volume.toLocaleString("id-ID", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+}) + " m³";
   </script>
 </body>
 </html>
