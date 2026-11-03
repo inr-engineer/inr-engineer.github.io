@@ -117,10 +117,10 @@
       <h1>Kalkulator Volume Beton</h1>
 
       <label for="panjang">Panjang (m)</label>
-      <input type="text" inputmode="decimal" id="panjang" placeholder="Contoh: 5">
+      <input type="text" inputmode="decimal" id="panjang" placeholder="Contoh: 5,00">
 
       <label for="lebar">Lebar (m)</label>
-      <input type="text" inputmode="decimal" id="lebar" placeholder="Contoh: 3">
+      <input type="text" inputmode="decimal" id="lebar" placeholder="Contoh: 3,00">
 
       <label for="tebal">Tebal (m)</label>
       <input type="text" inputmode="decimal" id="tebal" placeholder="Contoh: 0,12">
@@ -140,11 +140,12 @@
 
   <script>
     function bacaAngka(id) {
-  var teks = document.getElementById(id).value;
-  teks = teks.replace(/\./g, "");   // hapus titik (pemisah ribuan)
-  teks = teks.replace(",", ".");    // koma jadi titik desimal
-  return parseFloat(teks);
-}
+      var teks = document.getElementById(id).value;
+      teks = teks.replace(/\./g, "");
+      teks = teks.replace(",", ".");
+      return parseFloat(teks);
+    }
+
     function hitung() {
       var p = bacaAngka("panjang");
       var l = bacaAngka("lebar");
@@ -160,9 +161,10 @@
 
       var volume = p * l * t;
       kotak.innerText = "Volume beton: " + volume.toLocaleString("id-ID", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-}) + " m³";
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + " m³";
+    }
   </script>
 </body>
 </html>
