@@ -3,58 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kalkulator volume beton online gratis. Hitung volume beton dari panjang, lebar, dan tebal. By INR Engineer.">
+  <meta name="description" content="Kalkulator volume beton online gratis. Hitung volume beton dari panjang, lebar, dan tebal dengan format angka Indonesia. By INR Engineer.">
   <title>Kalkulator Volume Beton | INR Engineer</title>
+  <link rel="icon" href="logo.png">
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --navy: #0b1b33;
+      --navy-2: #13294b;
+      --aksen: #e8a33d;
+      --teks: #1e293b;
+      --abu: #64748b;
+      --garis: #e2e8f0;
+      --latar: #f8fafc;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f1f5f9;
-      color: #1e293b;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      background: var(--latar);
+      color: var(--teks);
+      line-height: 1.6;
     }
 
+    .wadah {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
     header {
-      background: #0f172a;
-      color: white;
-      padding: 16px 20px;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    header a {
-      color: white;
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 20px;
+      letter-spacing: 0.5px;
     }
 
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo span { color: var(--aksen); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: #fff;
+      border-bottom-color: var(--aksen);
+    }
+
+    /* Judul halaman */
+    .judul-halaman {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 40px 0 72px;
+    }
+
+    .judul-halaman h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1.2;
+      margin: 0 0 10px;
+    }
+
+    .judul-halaman p {
+      max-width: 520px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      font-size: 16px;
+    }
+
+    /* Kartu kalkulator */
     main {
-      max-width: 480px;
-      margin: 24px auto;
+      max-width: 560px;
+      margin: -40px auto 0;
       padding: 0 16px;
+      position: relative;
     }
 
     .kartu {
-      background: white;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      font-size: 24px;
-      margin-top: 0;
+      background: #fff;
+      border: 1px solid var(--garis);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(11, 27, 51, 0.08);
     }
 
     label {
       display: block;
       margin-top: 16px;
-      font-weight: bold;
+      font-weight: 600;
+      color: var(--navy);
     }
+
+    label:first-of-type { margin-top: 0; }
 
     input {
       width: 100%;
@@ -63,6 +140,13 @@
       font-size: 16px;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--aksen);
+      box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.25);
     }
 
     button {
@@ -70,52 +154,118 @@
       margin-top: 24px;
       padding: 14px;
       font-size: 16px;
-      font-weight: bold;
-      color: white;
-      background: #f97316;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--aksen);
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #ea580c;
-    }
+    button:hover { background: #f1b556; }
 
     #hasil {
       margin-top: 20px;
       padding: 16px;
-      background: #fff7ed;
-      border-left: 4px solid #f97316;
+      background: #fffbeb;
+      border-left: 4px solid var(--aksen);
       border-radius: 8px;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
+      color: var(--navy);
       display: none;
     }
 
-    .slot-iklan {
-      margin: 20px 0;
-      min-height: 0;
+    /* Rumus */
+    .rumus {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid var(--garis);
+      border-left: 4px solid var(--aksen);
+      border-radius: 12px;
+      padding: 24px;
     }
 
-    footer {
+    .rumus h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: var(--navy);
+    }
+
+    .rumus p {
+      margin: 0 0 12px;
+      color: var(--abu);
+      font-size: 15px;
+    }
+
+    .rumus .persamaan {
+      background: var(--latar);
+      border: 1px solid var(--garis);
+      border-radius: 8px;
+      padding: 12px;
       text-align: center;
-      padding: 20px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .slot-iklan { margin: 24px 0; min-height: 0; }
+
+    .kembali {
+      display: inline-block;
+      margin: 8px 0 48px;
+      color: #b7791f;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .kembali:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: #94a3b8;
+      text-align: center;
+      padding: 28px 20px;
       font-size: 14px;
-      color: #64748b;
+    }
+
+    footer strong { color: #fff; }
+
+    @media (max-width: 560px) {
+      .bar { height: auto; padding: 10px 0; flex-direction: column; gap: 6px; }
+      nav { gap: 16px; }
+      nav a { font-size: 14px; }
+      .judul-halaman { padding: 32px 0 64px; }
+      .kartu { padding: 20px; }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <a href="index.html">INR Engineer</a>
+    <div class="wadah bar">
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Logo INR Engineer">
+        <div>INR <span>Engineer</span></div>
+      </a>
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kalkulator">Kalkulator</a>
+        <a href="index.html#tentang">Tentang</a>
+        <a href="https://www.instagram.com/inr_engineer" target="_blank" rel="noopener">Kontak</a>
+      </nav>
+    </div>
   </header>
+
+  <section class="judul-halaman">
+    <div class="wadah">
+      <h1>Kalkulator Volume Beton</h1>
+      <p>Hitung volume beton dari panjang, lebar, dan tebal dengan cepat.</p>
+    </div>
+  </section>
 
   <main>
     <div class="kartu">
-      <h1>Kalkulator Volume Beton</h1>
-
       <label for="panjang">Panjang (m)</label>
       <input type="text" inputmode="decimal" id="panjang" placeholder="Contoh: 5,00">
 
@@ -130,12 +280,22 @@
       <div id="hasil"></div>
     </div>
 
+    <div class="rumus">
+      <h2>Rumus Volume Beton</h2>
+      <p>Untuk elemen berbentuk balok seperti pelat lantai, sloof, atau rabat beton, volume dihitung dengan:</p>
+      <div class="persamaan">Volume = Panjang × Lebar × Tebal</div>
+      <p style="margin-top:12px;">Contoh: pelat lantai 5,00 m × 3,00 m dengan tebal 0,12 m membutuhkan beton 1,80 m³. Ukuran tebal ditulis dalam meter, jadi 12 cm = 0,12 m.</p>
+    </div>
+
     <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
     <div class="slot-iklan"></div>
+
+    <a class="kembali" href="index.html#kalkulator">&larr; Kembali ke daftar kalkulator</a>
   </main>
 
   <footer>
-    Dibuat oleh INR Engineer
+    <strong>INR Engineer</strong> &middot; Kalkulator Sipil<br>
+    &copy; 2026 INR Engineer. Semua hak dilindungi.
   </footer>
 
   <script>
