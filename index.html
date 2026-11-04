@@ -7,6 +7,7 @@
   <title>Kalkulator Sipil | INR Engineer</title>
 
   <style>
+   <link rel="icon" href="logo.png">
     :root {
       --navy: #0b1b33;
       --navy-2: #13294b;
@@ -51,12 +52,20 @@
       height: 64px;
     }
 
-    .logo {
+   .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: #fff;
       text-decoration: none;
       font-weight: 700;
       font-size: 20px;
       letter-spacing: 0.5px;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
     }
 
     .logo span { color: var(--aksen); }
@@ -269,7 +278,10 @@
 <body>
   <header>
     <div class="wadah bar">
-      <a class="logo" href="index.html">INR <span>Engineer</span></a>
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Logo INR Engineer">
+        <div>INR <span>Engineer</span></div>
+      </a>
       <nav>
         <a href="#kalkulator">Kalkulator</a>
         <a href="#tentang">Tentang</a>
