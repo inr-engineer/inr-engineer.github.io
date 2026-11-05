@@ -11,8 +11,9 @@
     gtag('config', 'G-XV9CQRPD7S');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kumpulan kalkulator teknik sipil online gratis untuk insinyur dan kontraktor. By INR Engineer.">
+  <meta name="description" content="Kumpulan kalkulator teknik sipil online gratis untuk insinyur dan kontraktor: volume beton, estimasi material konstruksi, dan konversi satuan. By INR Engineer.">
   <title>Kalkulator Sipil | INR Engineer</title>
+  <link rel="icon" href="logo.png">
 
   <style>
     :root {
@@ -24,8 +25,7 @@
       --garis: #e2e8f0;
       --latar: #f8fafc;
     }
-    <link rel="icon" href="logo.png">
-        
+
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
@@ -38,11 +38,7 @@
       line-height: 1.6;
     }
 
-    .wadah {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    .wadah { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 
     /* Header */
     header {
@@ -60,7 +56,7 @@
       height: 64px;
     }
 
-   .logo {
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -71,21 +67,20 @@
       letter-spacing: 0.5px;
     }
 
-    .logo img {
-      height: 40px;
-      width: auto;
-    }
-
+    .logo img { height: 40px; width: auto; }
     .logo span { color: var(--aksen); }
+
+    nav { display: flex; align-items: center; gap: 24px; }
 
     nav a {
       color: #cbd5e1;
       text-decoration: none;
       font-size: 15px;
-      margin-left: 24px;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
     }
 
-    nav a:hover { color: #fff; }
+    nav a:hover { color: #fff; border-bottom-color: var(--aksen); }
 
     /* Hero */
     .hero {
@@ -148,32 +143,15 @@
       box-shadow: 0 8px 24px rgba(11, 27, 51, 0.08);
     }
 
-    .poin strong {
-      display: block;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-
-    .poin span {
-      font-size: 14px;
-      color: var(--abu);
-    }
+    .poin strong { display: block; color: var(--navy); margin-bottom: 4px; }
+    .poin span { font-size: 14px; color: var(--abu); }
 
     /* Daftar kalkulator */
     section.daftar-wrap { padding: 64px 0 24px; }
 
     .judul-bagian { margin-bottom: 28px; }
-
-    .judul-bagian h2 {
-      font-size: 28px;
-      color: var(--navy);
-      margin: 0 0 6px;
-    }
-
-    .judul-bagian p {
-      margin: 0;
-      color: var(--abu);
-    }
+    .judul-bagian h2 { font-size: 28px; color: var(--navy); margin: 0 0 6px; }
+    .judul-bagian p { margin: 0; color: var(--abu); }
 
     .daftar {
       display: grid;
@@ -212,35 +190,9 @@
 
     .ikon svg { width: 26px; height: 26px; }
 
-    .kartu h3 {
-      margin: 0 0 6px;
-      font-size: 19px;
-      color: var(--navy);
-    }
-
-    .kartu p {
-      margin: 0 0 16px;
-      font-size: 14px;
-      color: var(--abu);
-    }
-
-    .aksi {
-      font-size: 14px;
-      font-weight: 600;
-      color: #b7791f;
-    }
-
-    .segera {
-      background: #f1f5f9;
-      border-style: dashed;
-    }
-
-    .segera .ikon {
-      background: #cbd5e1;
-      color: #fff;
-    }
-
-    .segera .aksi { color: var(--abu); }
+    .kartu h3 { margin: 0 0 6px; font-size: 19px; color: var(--navy); }
+    .kartu p { margin: 0 0 16px; font-size: 14px; color: var(--abu); }
+    .aksi { font-size: 14px; font-weight: 600; color: #b7791f; }
 
     /* Tentang */
     .tentang {
@@ -252,16 +204,8 @@
       padding: 28px;
     }
 
-    .tentang h2 {
-      margin: 0 0 8px;
-      color: var(--navy);
-      font-size: 22px;
-    }
-
-    .tentang p {
-      margin: 0;
-      color: var(--abu);
-    }
+    .tentang h2 { margin: 0 0 8px; color: var(--navy); font-size: 22px; }
+    .tentang p { margin: 0; color: var(--abu); }
 
     .slot-iklan { margin: 24px 0; min-height: 0; }
 
@@ -277,7 +221,9 @@
     footer strong { color: #fff; }
 
     @media (max-width: 560px) {
-      nav a { margin-left: 16px; }
+      .bar { height: auto; padding: 10px 0; flex-direction: column; gap: 6px; }
+      nav { gap: 16px; }
+      nav a { font-size: 14px; }
       .hero { padding: 56px 0 72px; }
     }
   </style>
@@ -291,8 +237,10 @@
         <div>INR <span>Engineer</span></div>
       </a>
       <nav>
+        <a href="index.html">Beranda</a>
         <a href="#kalkulator">Kalkulator</a>
         <a href="#tentang">Tentang</a>
+        <a href="https://www.instagram.com/inr_engineer" target="_blank" rel="noopener">Kontak</a>
       </nav>
     </div>
   </header>
@@ -329,6 +277,8 @@
       </div>
 
       <div class="daftar">
+
+        <!-- 1. Volume Beton -->
         <a class="kartu" href="volume-beton.html">
           <div class="ikon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
@@ -341,6 +291,21 @@
           <p>Hitung volume beton dari panjang, lebar, dan tebal.</p>
           <span class="aksi">Buka kalkulator &rarr;</span>
         </a>
+
+        <!-- 2. Material Konstruksi (pilar) -->
+        <a class="kartu" href="material-konstruksi.html">
+          <div class="ikon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="1"/>
+              <path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/>
+            </svg>
+          </div>
+          <h3>Material Konstruksi</h3>
+          <p>Estimasi kebutuhan material fondasi, beton, dan dinding.</p>
+          <span class="aksi">Buka kalkulator &rarr;</span>
+        </a>
+
+        <!-- 3. Konversi Satuan -->
         <a class="kartu" href="konversi-satuan.html">
           <div class="ikon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -355,28 +320,8 @@
           <span class="aksi">Buka kalkulator &rarr;</span>
         </a>
 
-        <div class="kartu segera">
-          <div class="ikon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M4 7h16M4 12h16M4 17h16"/>
-            </svg>
-          </div>
-          <h3>Besi Tulangan</h3>
-          <p>Hitung kebutuhan dan berat besi tulangan.</p>
-          <span class="aksi">Segera hadir</span>
-        </div>
+        <!-- Pilar baru nanti: salin satu blok <a class="kartu"> ... </a> di atas -->
 
-        <div class="kartu segera">
-          <div class="ikon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-              <path d="M3 8h18l-3 12H6L3 8z"/>
-              <path d="M3 8l2-4h14l2 4"/>
-            </svg>
-          </div>
-          <h3>Volume Galian</h3>
-          <p>Hitung volume galian tanah untuk pondasi dan saluran.</p>
-          <span class="aksi">Segera hadir</span>
-        </div>
       </div>
 
       <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
@@ -389,7 +334,7 @@
     </section>
   </div>
 
- <footer>
+  <footer>
     <div style="margin-bottom:10px;">
       <a href="kebijakan-privasi.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Kebijakan Privasi</a> &middot;
       <a href="disclaimer.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Disclaimer</a>
