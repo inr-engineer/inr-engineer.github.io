@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV9CQRPD7S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XV9CQRPD7S');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kalkulator estimasi kebutuhan material konstruksi online gratis: fondasi batu belah, beton, dan dinding bata merah. By INR Engineer.">
+  <title>Kalkulator Estimasi Kebutuhan Material Konstruksi | INR Engineer</title>
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root {
+      --navy: #0b1b33;
+      --navy-2: #13294b;
+      --aksen: #e8a33d;
+      --teks: #1e293b;
+      --abu: #64748b;
+      --garis: #e2e8f0;
+      --latar: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      background: var(--latar);
+      color: var(--teks);
+      line-height: 1.6;
+    }
+
+    .wadah { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .logo img { height: 40px; width: auto; }
+    .logo span { color: var(--aksen); }
+
+    nav { display: flex; align-items: center; gap: 24px; }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover { color: #fff; border-bottom-color: var(--aksen); }
+
+    .judul-halaman {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 48px 0 64px;
+    }
+
+    .judul-halaman h1 {
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.2;
+      margin: 0 0 12px;
+    }
+
+    .judul-halaman p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      font-size: 16px;
+    }
+
+    main { padding: 48px 0 24px; }
+
+    .pengantar {
+      background: #fff;
+      border: 1px solid var(--garis);
+      border-left: 4px solid var(--aksen);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .pengantar h2 { margin: 0 0 8px; font-size: 20px; color: var(--navy); }
+    .pengantar p { margin: 0; color: var(--abu); font-size: 15px; }
+
+    .kelompok { margin-bottom: 40px; }
+
+    .kelompok h2 {
+      font-size: 22px;
+      color: var(--navy);
+      margin: 0 0 4px;
+    }
+
+    .kelompok .ket { margin: 0 0 18px; color: var(--abu); font-size: 15px; }
+
+    .daftar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .kartu {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--garis);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    a.kartu:hover {
+      transform: translateY(-4px);
+      border-color: var(--aksen);
+      box-shadow: 0 12px 28px rgba(11, 27, 51, 0.12);
+    }
+
+    .ikon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      color: var(--aksen);
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ikon svg { width: 26px; height: 26px; }
+
+    .kartu h3 { margin: 0 0 6px; font-size: 19px; color: var(--navy); }
+    .kartu p { margin: 0 0 16px; font-size: 14px; color: var(--abu); }
+    .aksi { font-size: 14px; font-weight: 600; color: #b7791f; }
+
+    .segera { background: #f1f5f9; border-style: dashed; }
+    .segera .ikon { background: #cbd5e1; color: #fff; }
+    .segera .aksi { color: var(--abu); }
+
+    .catatan {
+      margin: 8px 0 24px;
+      padding: 16px 20px;
+      background: #fffbeb;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #78591a;
+    }
+
+    .slot-iklan { margin: 24px 0; min-height: 0; }
+
+    .kembali {
+      display: inline-block;
+      margin: 8px 0 48px;
+      color: #b7791f;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .kembali:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--navy);
+      color: #94a3b8;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 14px;
+    }
+
+    footer strong { color: #fff; }
+
+    @media (max-width: 560px) {
+      .bar { height: auto; padding: 10px 0; flex-direction: column; gap: 6px; }
+      nav { gap: 16px; }
+      nav a { font-size: 14px; }
+      .judul-halaman { padding: 36px 0 48px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wadah bar">
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Logo INR Engineer">
+        <div>INR <span>Engineer</span></div>
+      </a>
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kalkulator">Kalkulator</a>
+        <a href="index.html#tentang">Tentang</a>
+        <a href="https://www.instagram.com/inr_engineer" target="_blank" rel="noopener">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="judul-halaman">
+    <div class="wadah">
+      <h1>Estimasi Kebutuhan Material Konstruksi</h1>
+      <p>Hitung kebutuhan semen, pasir, batu, dan bata untuk pekerjaan konstruksi dengan cepat dan praktis.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wadah">
+
+      <div class="pengantar">
+        <h2>Tentang kalkulator material</h2>
+        <p>Kalkulator di bagian ini menghitung perkiraan kebutuhan material dari volume atau luas pekerjaan, memakai koefisien analisis harga satuan pekerjaan (AHSP) Kementerian PUPR. Hasilnya adalah estimasi untuk perencanaan awal dan perkiraan anggaran.</p>
+      </div>
+
+      <!-- KELOMPOK 1 -->
+      <section class="kelompok">
+        <h2>Pekerjaan Pasangan</h2>
+        <p class="ket">Fondasi dan dinding.</p>
+
+        <div class="daftar">
+          <!-- Kalau halamannya sudah jadi, ganti <div class="kartu segera"> jadi <a class="kartu" href="nama-file.html">
+               dan penutupnya </div> jadi </a>, lalu ganti "Segera hadir" jadi "Buka kalkulator &rarr;" -->
+          <div class="kartu segera">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <path d="M3 20h18L16 9H8L3 20z"/>
+                <path d="M8 9l1-5h6l1 5"/>
+              </svg>
+            </div>
+            <h3>Fondasi Batu Belah</h3>
+            <p>Batu belah, semen, dan pasir untuk pasangan fondasi.</p>
+            <span class="aksi">Segera hadir</span>
+          </div>
+
+          <div class="kartu segera">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="1"/>
+                <path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/>
+              </svg>
+            </div>
+            <h3>Dinding Bata Merah</h3>
+            <p>Jumlah bata, semen, dan pasir untuk pasangan dinding.</p>
+            <span class="aksi">Segera hadir</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- KELOMPOK 2 -->
+      <section class="kelompok">
+        <h2>Pekerjaan Beton</h2>
+        <p class="ket">Beton struktural dan non-struktural.</p>
+
+        <div class="daftar">
+          <div class="kartu segera">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <path d="M12 3l9 5-9 5-9-5 9-5z"/>
+                <path d="M3 8v8l9 5 9-5V8"/>
+                <path d="M12 13v8"/>
+              </svg>
+            </div>
+            <h3>Pekerjaan Beton</h3>
+            <p>Semen, pasir, kerikil, dan air untuk campuran beton.</p>
+            <span class="aksi">Segera hadir</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kelompok baru nanti: salin satu blok <section class="kelompok"> ... </section> -->
+
+      <div class="catatan">
+        <strong>Catatan:</strong> hasil perhitungan adalah estimasi. Kebutuhan di lapangan dapat berbeda tergantung kondisi material, metode kerja, dan tingkat susut. Baca juga <a href="disclaimer.html">Disclaimer</a>.
+      </div>
+
+      <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
+      <div class="slot-iklan"></div>
+
+      <a class="kembali" href="index.html#kalkulator">&larr; Kembali ke daftar kalkulator</a>
+    </div>
+  </main>
+
+  <footer>
+    <div style="margin-bottom:10px;">
+      <a href="kebijakan-privasi.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Kebijakan Privasi</a> &middot;
+      <a href="disclaimer.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Disclaimer</a>
+    </div>
+    <strong>INR Engineer</strong> &middot; Kalkulator Sipil<br>
+    &copy; 2026 INR Engineer. Semua hak dilindungi.
+  </footer>
+</body>
+</html>
