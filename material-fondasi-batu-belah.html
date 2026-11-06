@@ -293,7 +293,6 @@
             <div>
               <p class="nama">Batu Belah</p>
               <p class="angka"><span id="h-batu"></span> <small>m³</small></p>
-              <p class="koef" id="k-batu"></p>
             </div>
           </div>
 
@@ -304,7 +303,6 @@
             <div>
               <p class="nama">Pasir Pasang</p>
               <p class="angka"><span id="h-pasir"></span> <small>m³</small></p>
-              <p class="koef" id="k-pasir"></p>
             </div>
           </div>
 
@@ -315,7 +313,6 @@
             <div>
               <p class="nama">Semen</p>
               <p class="angka"><span id="h-semen"></span> <small>kg</small></p>
-              <p class="koef" id="k-semen"></p>
             </div>
           </div>
 
@@ -494,9 +491,6 @@
       el("h-pasir").textContent = fmt(h.pasir, 2, 2);
       el("h-semen").textContent = fmt(h.semen, 0, 2);
       el("h-sak").textContent = fmt(h.sak, 0, 0);
-      el("k-batu").textContent = "Koefisien: " + fmt(m.batu, 3, 3) + " m³/m³";
-      el("k-pasir").textContent = "Koefisien: " + fmt(m.pasir, 3, 3) + " m³/m³";
-      el("k-semen").textContent = "Koefisien: " + fmt(m.semen, 0, 2) + " kg/m³";
 
       var box = el("hasil");
       box.hidden = false;
