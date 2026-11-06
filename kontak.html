@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV9CQRPD7S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XV9CQRPD7S');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hubungi INR Engineer untuk saran, koreksi rumus, atau kerja sama. Kontak melalui email dan Instagram.">
+  <title>Kontak | INR Engineer</title>
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --navy: #0b1b33;
+      --navy-2: #13294b;
+      --aksen: #e8a33d;
+      --latar: #f8fafc;
+      --kartu: #ffffff;
+      --teks: #1e293b;
+      --judul: #0b1b33;
+      --abu: #475569;
+      --garis: #e2e8f0;
+      --tautan: #92600f;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --latar: #08111f;
+        --kartu: #101f38;
+        --teks: #e2e8f0;
+        --judul: #f1f5f9;
+        --abu: #a7b4c7;
+        --garis: #24395c;
+        --tautan: #f1b556;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      background: var(--latar);
+      color: var(--teks);
+      line-height: 1.7;
+    }
+
+    .wadah { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    :focus-visible { outline: 3px solid var(--aksen); outline-offset: 2px; }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      color: #fff; text-decoration: none;
+      font-weight: 700; font-size: 20px; letter-spacing: 0.5px;
+    }
+    .logo img { height: 40px; width: auto; }
+    .logo span { color: var(--aksen); }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { color: #cbd5e1; text-decoration: none; font-size: 15px; padding: 6px 0; border-bottom: 2px solid transparent; }
+    nav a:hover { color: #fff; border-bottom-color: var(--aksen); }
+
+    .judul-halaman {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: #fff; text-align: center; padding: 40px 0 72px;
+    }
+    .judul-halaman h1 { font-size: clamp(26px, 5vw, 38px); line-height: 1.2; margin: 0 0 10px; }
+    .judul-halaman p { max-width: 520px; margin: 0 auto; color: #cbd5e1; font-size: 16px; }
+
+    main { max-width: 760px; margin: -40px auto 48px; padding: 0 16px; position: relative; }
+
+    .isi {
+      background: var(--kartu);
+      border: 1px solid var(--garis);
+      border-radius: 14px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(11, 27, 51, 0.12);
+    }
+    .isi h2 { font-size: 20px; color: var(--judul); margin: 28px 0 8px; }
+    .isi h2:first-child { margin-top: 0; }
+    .isi p, .isi li { color: var(--abu); font-size: 16px; }
+    .isi p { margin: 0 0 12px; }
+    .isi ul { margin: 0 0 12px; padding-left: 22px; }
+    .isi a { color: var(--tautan); font-weight: 600; }
+
+    .saluran { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 16px 0 8px; }
+    .saluran a {
+      display: block; padding: 16px;
+      text-decoration: none;
+      border: 1px solid var(--garis);
+      border-radius: 12px;
+      color: var(--judul);
+    }
+    .saluran a:hover { border-color: var(--aksen); }
+    .saluran strong { display: block; }
+    .saluran span { font-size: 14px; font-weight: 400; color: var(--abu); overflow-wrap: anywhere; }
+
+    footer { background: var(--navy); color: #94a3b8; text-align: center; padding: 28px 20px; font-size: 14px; }
+    footer strong { color: #fff; }
+
+    @media (max-width: 560px) {
+      .bar { height: auto; padding: 10px 0; flex-direction: column; gap: 6px; }
+      nav { gap: 16px; }
+      nav a { font-size: 14px; }
+      .judul-halaman { padding: 32px 0 64px; }
+      .isi { padding: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wadah bar">
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Logo INR Engineer">
+        <div>INR <span>Engineer</span></div>
+      </a>
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kalkulator">Kalkulator</a>
+        <a href="index.html#tentang">Tentang</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="judul-halaman">
+    <div class="wadah">
+      <h1>Kontak</h1>
+      <p>Punya saran, menemukan kesalahan, atau ingin bekerja sama? Hubungi kami.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="isi">
+      <h2>Hubungi INR Engineer</h2>
+      <p>Kami terbuka untuk masukan agar kalkulator di website ini makin akurat dan berguna.</p>
+
+      <div class="saluran">
+        <!-- GANTI emailkamu@gmail.com dengan email website kamu (2 tempat) -->
+        <a href="mailto:emailkamu@gmail.com">
+          <strong>Email</strong>
+          <span>emailkamu@gmail.com</span>
+        </a>
+        <a href="https://www.instagram.com/inr_engineer" target="_blank" rel="noopener">
+          <strong>Instagram</strong>
+          <span>@inr_engineer</span>
+        </a>
+        <!-- Saluran lain (aktifkan kalau linknya sudah pasti):
+        <a href="LINK_YOUTUBE" target="_blank" rel="noopener">
+          <strong>YouTube</strong>
+          <span>INR Engineer</span>
+        </a>
+        <a href="LINK_TIKTOK" target="_blank" rel="noopener">
+          <strong>TikTok</strong>
+          <span>INR Engineer</span>
+        </a>
+        <a href="LINK_FACEBOOK" target="_blank" rel="noopener">
+          <strong>Facebook</strong>
+          <span>INR Engineer</span>
+        </a>
+        -->
+      </div>
+
+      <h2>Yang bisa kamu sampaikan</h2>
+      <ul>
+        <li>Koreksi rumus atau koefisien yang menurutmu kurang tepat</li>
+        <li>Saran kalkulator baru</li>
+        <li>Laporan kendala tampilan atau hasil hitungan</li>
+        <li>Tawaran kerja sama</li>
+      </ul>
+
+      <h2>Waktu respons</h2>
+      <p>Pesan dibalas secara berkala. Mohon sertakan detail yang jelas, misalnya nama kalkulator dan angka yang kamu masukkan, agar masalahnya cepat kami periksa.</p>
+
+      <p>Catatan: kami tidak memberikan konsultasi perhitungan struktur lewat pesan. Baca <a href="disclaimer.html">Disclaimer</a> untuk batasan penggunaan website ini.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div style="margin-bottom:10px;">
+      <a href="kebijakan-privasi.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Kebijakan Privasi</a> &middot;
+      <a href="disclaimer.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Disclaimer</a>
+    </div>
+    <strong>INR Engineer</strong> &middot; Kalkulator Sipil<br>
+    &copy; 2026 INR Engineer. Semua hak dilindungi.
+  </footer>
+</body>
+</html>
