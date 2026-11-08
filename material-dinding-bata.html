@@ -251,7 +251,8 @@
     <div class="kartu">
       <div class="kolom">
         <label for="volume">Volume Pekerjaan (m²)</label>
-        <input type="text" id="volume" inputmode="decimal" autocomplete="off" placeholder="contoh: 25,5" aria-describedby="err-volume">
+        <input type="text" id="volume" inputmode="decimal" autocomplete="off" placeholder="contoh: 25,5" aria-describedby="petunjuk-volume err-volume">
+        <p id="petunjuk-volume" style="margin:8px 0 0;font-size:14px;color:var(--abu);">Isi dengan luas pasangan dinding. Jika ada pintu atau jendela, kurangi dulu luas bukaannya. Contoh: 30 m² dikurangi bukaan 4 m² menjadi 26 m².</p>
         <p class="pesan" id="err-volume" aria-live="polite"></p>
       </div>
 
