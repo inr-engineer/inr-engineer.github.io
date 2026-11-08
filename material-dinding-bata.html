@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV9CQRPD7S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XV9CQRPD7S');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kalkulator estimasi kebutuhan material dinding bata merah: jumlah bata, pasir pasang, dan semen per tebal dinding dan mutu mortar. By INR Engineer.">
+  <title>Estimasi Kebutuhan Material Dinding Bata Merah | INR Engineer</title>
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --navy: #0b1b33;
+      --navy-2: #13294b;
+      --aksen: #e8a33d;
+      --latar: #f8fafc;
+      --kartu: #ffffff;
+      --teks: #1e293b;
+      --judul: #0b1b33;
+      --abu: #475569;
+      --garis: #e2e8f0;
+      --input: #ffffff;
+      --hasil-latar: #fffbeb;
+      --tautan: #92600f;
+      --error: #b91c1c;
+      --error-latar: #fef2f2;
+      --info: #78591a;
+      --info-latar: #fffbeb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --latar: #08111f;
+        --kartu: #101f38;
+        --teks: #e2e8f0;
+        --judul: #f1f5f9;
+        --abu: #a7b4c7;
+        --garis: #24395c;
+        --input: #0b1830;
+        --hasil-latar: #1a2236;
+        --tautan: #f1b556;
+        --error: #fca5a5;
+        --error-latar: #3a1518;
+        --info: #f1d9a0;
+        --info-latar: #2a2314;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      background: var(--latar);
+      color: var(--teks);
+      line-height: 1.6;
+    }
+
+    .wadah { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    :focus-visible { outline: 3px solid var(--aksen); outline-offset: 2px; }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      color: #fff; text-decoration: none;
+      font-weight: 700; font-size: 20px; letter-spacing: 0.5px;
+    }
+    .logo img { height: 40px; width: auto; }
+    .logo span { color: var(--aksen); }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { color: #cbd5e1; text-decoration: none; font-size: 15px; padding: 6px 0; border-bottom: 2px solid transparent; }
+    nav a:hover { color: #fff; border-bottom-color: var(--aksen); }
+
+    .judul-halaman {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      color: #fff; text-align: center; padding: 40px 0 72px;
+    }
+    .judul-halaman h1 { font-size: clamp(24px, 5vw, 36px); line-height: 1.25; margin: 0 0 10px; }
+    .judul-halaman p { max-width: 560px; margin: 0 auto; color: #cbd5e1; font-size: 16px; }
+
+    main { max-width: 640px; margin: -40px auto 0; padding: 0 16px; position: relative; }
+
+    .kartu {
+      background: var(--kartu);
+      border: 1px solid var(--garis);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(11, 27, 51, 0.12);
+    }
+
+    label { display: block; font-weight: 600; color: var(--judul); margin-bottom: 6px; }
+    .kolom + .kolom { margin-top: 20px; }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--teks);
+      background: var(--input);
+      border: 1px solid var(--garis);
+      border-radius: 8px;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--aksen);
+      box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.3);
+    }
+    [aria-invalid="true"] { border-color: var(--error); }
+
+    .baris-mutu { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+    .baris-mutu select { flex: 1 1 220px; width: auto; }
+    .ket-mutu { flex: 1 1 200px; margin: 0; font-size: 14px; color: var(--abu); }
+
+    .pesan {
+      margin: 8px 0 0;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: var(--error);
+      background: var(--error-latar);
+      border-radius: 6px;
+    }
+    .pesan.info { color: var(--info); background: var(--info-latar); }
+    .pesan:empty { display: none; }
+
+    .aksi { display: flex; gap: 12px; margin-top: 24px; }
+    button {
+      padding: 14px; font-size: 16px; font-weight: 700; font-family: inherit;
+      border-radius: 8px; cursor: pointer;
+    }
+    .utama { flex: 1 1 auto; color: var(--navy); background: var(--aksen); border: 1px solid var(--aksen); }
+    .utama:hover { background: #f1b556; }
+    .sekunder { flex: 0 0 auto; padding: 14px 22px; color: var(--judul); background: transparent; border: 1px solid var(--garis); }
+    .sekunder:hover { border-color: var(--aksen); }
+
+    #hasil { margin-top: 24px; }
+    #hasil[hidden] { display: none; }
+    #hasil.muncul { animation: naik 0.35s ease-out; }
+    @keyframes naik { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .ringkasan {
+      padding: 16px;
+      background: var(--hasil-latar);
+      border-left: 4px solid var(--aksen);
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .ringkasan strong { color: var(--judul); }
+    .ringkasan div + div { margin-top: 4px; }
+
+    .grid-hasil { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
+
+    .item {
+      display: flex; gap: 14px; align-items: center;
+      padding: 16px;
+      background: var(--kartu);
+      border: 1px solid var(--garis);
+      border-radius: 12px;
+    }
+    .item .ikon {
+      flex: 0 0 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--navy); color: var(--aksen); border-radius: 10px;
+    }
+    .item .ikon svg { width: 24px; height: 24px; }
+    .item .nama { margin: 0; font-size: 14px; color: var(--abu); }
+    .item .angka { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.2; color: var(--judul); overflow-wrap: anywhere; }
+    .item .angka small { font-size: 15px; font-weight: 600; color: var(--abu); }
+    .item .sub { margin: 2px 0 0; font-size: 12px; color: var(--abu); }
+
+    .catatan { margin: 16px 0 0; font-size: 14px; color: var(--abu); }
+
+    .rumus {
+      margin-top: 24px;
+      background: var(--kartu);
+      border: 1px solid var(--garis);
+      border-left: 4px solid var(--aksen);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .rumus h2 { margin: 0 0 8px; font-size: 20px; color: var(--judul); }
+    .rumus h3 { margin: 16px 0 6px; font-size: 16px; color: var(--judul); }
+    .rumus p, .rumus li { color: var(--abu); font-size: 15px; }
+    .rumus p { margin: 0 0 10px; }
+    .rumus ul { margin: 0 0 10px; padding-left: 20px; }
+    .rumus summary { cursor: pointer; font-weight: 600; color: var(--tautan); }
+
+    .tabel-bungkus { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--garis); color: var(--abu); white-space: nowrap; }
+    th { color: var(--judul); }
+
+    .slot-iklan { margin: 24px 0; min-height: 0; }
+    .kembali { display: inline-block; margin: 16px 0 48px; color: var(--tautan); font-weight: 600; text-decoration: none; }
+    .kembali:hover { text-decoration: underline; }
+
+    footer { background: var(--navy); color: #94a3b8; text-align: center; padding: 28px 20px; font-size: 14px; }
+    footer strong { color: #fff; }
+
+    @media (max-width: 560px) {
+      .bar { height: auto; padding: 10px 0; flex-direction: column; gap: 6px; }
+      nav { gap: 16px; }
+      nav a { font-size: 14px; }
+      .judul-halaman { padding: 32px 0 64px; }
+      .kartu { padding: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #hasil.muncul { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wadah bar">
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Logo INR Engineer">
+        <div>INR <span>Engineer</span></div>
+      </a>
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#kalkulator">Kalkulator</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="judul-halaman">
+    <div class="wadah">
+      <h1>Estimasi Kebutuhan Material Dinding Bata Merah</h1>
+      <p>Hitung bata merah, pasir pasang, dan semen dari luas pasangan dinding.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="kartu">
+      <div class="kolom">
+        <label for="volume">Volume Pekerjaan (m²)</label>
+        <input type="text" id="volume" inputmode="decimal" autocomplete="off" placeholder="contoh: 25,5" aria-describedby="err-volume">
+        <p class="pesan" id="err-volume" aria-live="polite"></p>
+      </div>
+
+      <div class="kolom">
+        <label for="tebal">Tebal Dinding</label>
+        <select id="tebal" aria-describedby="err-tebal"></select>
+        <p class="pesan" id="err-tebal" aria-live="polite"></p>
+      </div>
+
+      <div class="kolom">
+        <label for="mutu">Mutu Pekerjaan</label>
+        <div class="baris-mutu">
+          <select id="mutu" aria-describedby="ket-mutu err-mutu"></select>
+          <p class="ket-mutu" id="ket-mutu" aria-live="polite" hidden></p>
+        </div>
+        <p class="pesan" id="err-mutu" aria-live="polite"></p>
+      </div>
+
+      <div class="aksi">
+        <button type="button" class="utama" id="btn-hitung">Hitung Material</button>
+        <button type="button" class="sekunder" id="btn-reset">Reset</button>
+      </div>
+
+      <div id="hasil" hidden aria-live="polite">
+        <div class="ringkasan">
+          <div><strong>Volume pekerjaan:</strong> <span id="r-volume"></span> m²</div>
+          <div><strong>Tebal dinding:</strong> <span id="r-tebal"></span></div>
+          <div><strong>Mutu:</strong> <span id="r-mutu"></span></div>
+        </div>
+
+        <div class="grid-hasil">
+          <div class="item">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/></svg>
+            </div>
+            <div>
+              <p class="nama">Bata Merah</p>
+              <p class="angka"><span id="h-bata"></span> <small>bh</small></p>
+              <p class="sub">Sudah dibulatkan ke atas</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18c3-5 6-7 9-7s6 2 9 7"/><path d="M3 18h18"/><circle cx="8" cy="15" r="0.8"/><circle cx="13" cy="14" r="0.8"/><circle cx="16.5" cy="16" r="0.8"/></svg>
+            </div>
+            <div>
+              <p class="nama">Pasir Pasang</p>
+              <p class="angka"><span id="h-pasir"></span> <small>m³</small></p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l1 13H4L5 7z"/><path d="M9 7V4h6v3"/><path d="M9 13h6"/></svg>
+            </div>
+            <div>
+              <p class="nama">Semen</p>
+              <p class="angka"><span id="h-semen"></span> <small>kg</small></p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="ikon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9l3-5h10l3 5"/><path d="M12 9v11"/></svg>
+            </div>
+            <div>
+              <p class="nama">Sak Semen (@50 kg)</p>
+              <p class="angka"><span id="h-sak"></span> <small>sak</small></p>
+              <p class="sub">Sudah dibulatkan ke atas</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="catatan">Catatan: Perhitungan ini mengacu kepada standar koefisien SNI yang berlaku.</p>
+      </div>
+    </div>
+
+    <div class="rumus">
+      <h2>Rumus dan Koefisien</h2>
+      <details style="margin-bottom:14px;">
+        <summary>Lihat rumus perhitungan</summary>
+        <p style="margin-top:10px;">Kebutuhan material dihitung dengan mengalikan luas pasangan dinding dengan koefisien per 1 m²:</p>
+        <ul>
+          <li>Bata merah (bh) = Luas × koefisien bata, dibulatkan ke atas</li>
+          <li>Pasir pasang (m³) = Luas × koefisien pasir</li>
+          <li>Semen (kg) = Luas × koefisien semen</li>
+          <li>Sak semen = Semen (kg) ÷ 50, dibulatkan ke atas</li>
+        </ul>
+      </details>
+
+      <h3>Tebal 1 Batu</h3>
+      <div class="tabel-bungkus">
+        <table id="tabel-satu">
+          <thead><tr><th>Mutu</th><th>Bata merah (bh)</th><th>Pasir (m³)</th><th>Semen (kg)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>Tebal 1/2 Batu</h3>
+      <div class="tabel-bungkus">
+        <table id="tabel-setengah">
+          <thead><tr><th>Mutu</th><th>Bata merah (bh)</th><th>Pasir (m³)</th><th>Semen (kg)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:12px;">Koefisien per 1 m² pasangan dinding. Hasil adalah estimasi untuk perencanaan awal. Selisih di lapangan bisa terjadi karena ukuran bata, tebal spesi, dan metode kerja. Baca juga <a href="disclaimer.html" style="color:var(--tautan);">Disclaimer</a>.</p>
+    </div>
+
+    <!-- Slot iklan: dikosongkan dulu, nanti diisi kode AdSense -->
+    <div class="slot-iklan"></div>
+
+    <a class="kembali" href="material-konstruksi.html">&larr; Kembali ke Material Konstruksi</a>
+  </main>
+
+  <footer>
+    <div style="margin-bottom:10px;">
+      <a href="kebijakan-privasi.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Kebijakan Privasi</a> &middot;
+      <a href="disclaimer.html" style="color:#cbd5e1;text-decoration:none;margin:0 8px;">Disclaimer</a>
+    </div>
+    <strong>INR Engineer</strong> &middot; Kalkulator Sipil<br>
+    &copy; 2026 INR Engineer. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    /* LOGIKA-MULAI */
+
+    var BERAT_SAK = 50; // kg per sak
+
+    // Pilihan tebal dinding
+    var TEBAL = {
+      satu:     { nama: "Tebal 1 Batu" },
+      setengah: { nama: "Tebal 1/2 Batu" }
+    };
+
+    // Pilihan mutu mortar
+    var MUTU = {
+      M: { nama: "Mortar Tipe M", ket: "17,5 MPa setara 1SP : 2PP" },
+      S: { nama: "Mortar Tipe S", ket: "12,5 MPa setara 1SP : 3PP" },
+      N: { nama: "Mortar Tipe N", ket: "5,2 MPa setara 1SP : 4PP" },
+      O: { nama: "Mortar Tipe O", ket: "2,4 MPa setara 1SP : 5PP" }
+    };
+
+    // Koefisien per 1 m2 pasangan. Ubah angka di sini saja.
+    // Tabel-1 = Tebal 1 Batu, Tabel-2 = Tebal 1/2 Batu
+    var KOEF = {
+      satu: {
+        M: { bata: 143.81, pasir: 0.08,  semen: 43.50 },
+        S: { bata: 143.81, pasir: 0.091, semen: 32.95 },
+        N: { bata: 143.81, pasir: 0.093, semen: 26.55 },
+        O: { bata: 143.81, pasir: 0.102, semen: 22.20 }
+      },
+      setengah: {
+        M: { bata: 71.91, pasir: 0.038, semen: 18.95 },
+        S: { bata: 71.91, pasir: 0.04,  semen: 14.37 },
+        N: { bata: 71.91, pasir: 0.043, semen: 11.50 },
+        O: { bata: 71.91, pasir: 0.045, semen: 9.68 }
+      }
+    };
+
+    // Format angka Indonesia: koma desimal, titik ribuan
+    function fmt(angka, minDesimal, maxDesimal) {
+      return angka.toLocaleString("id-ID", {
+        minimumFractionDigits: minDesimal,
+        maximumFractionDigits: maxDesimal
+      });
+    }
+
+    // Bulatkan ke atas dengan perlindungan galat floating point
+    function bulatAtas(nilai) {
+      return Math.ceil(Number(nilai.toFixed(6)));
+    }
+
+    // Ubah teks ketikan jadi angka
+    function bacaVolume(teks) {
+      var t = String(teks).trim();
+      if (t === "") return { kosong: true, valid: false, nilai: NaN };
+      t = t.replace(/\./g, "").replace(",", ".");   // hapus titik ribuan, koma jadi titik desimal
+      if (!/^-?(\d+\.?\d*|\.\d+)$/.test(t)) return { kosong: false, valid: false, nilai: NaN };
+      return { kosong: false, valid: true, nilai: Number(t) };
+    }
+
+    // Validasi: urutan volume, tebal, mutu
+    function validasi(teksVolume, kodeTebal, kodeMutu) {
+      var err = { volume: "", tebal: "", mutu: "" };
+      var v = bacaVolume(teksVolume);
+      if (v.kosong) err.volume = "Volume pekerjaan wajib diisi.";
+      else if (!v.valid) err.volume = "Masukkan angka yang valid.";
+      else if (v.nilai <= 0) err.volume = "Volume harus lebih besar dari 0.";
+      if (!TEBAL[kodeTebal]) err.tebal = "Pilih tebal dinding terlebih dahulu (Tebal 1 Batu atau Tebal 1/2 Batu).";
+      if (!MUTU[kodeMutu]) err.mutu = "Pilih mutu pekerjaan terlebih dahulu.";
+      return { err: err, ok: !err.volume && !err.tebal && !err.mutu, volume: v.nilai };
+    }
+
+    // Perhitungan material
+    function hitungMaterial(volume, kodeTebal, kodeMutu) {
+      var k = KOEF[kodeTebal][kodeMutu];
+      var semen = volume * k.semen;
+      return {
+        bata: bulatAtas(volume * k.bata),
+        pasir: volume * k.pasir,
+        semen: semen,
+        sak: bulatAtas(semen / BERAT_SAK)
+      };
+    }
+
+    /* LOGIKA-SELESAI */
+
+    var el = function (id) { return document.getElementById(id); };
+    var inVolume = el("volume");
+    var selTebal = el("tebal");
+    var selMutu = el("mutu");
+
+    // Isi dropdown dan tabel koefisien dari objek konfigurasi
+    (function isiDaftar() {
+      function opsi(sel, nilai, teks) {
+        var o = document.createElement("option");
+        o.value = nilai; o.textContent = teks;
+        sel.appendChild(o);
+      }
+      opsi(selTebal, "", "-- Pilih Tebal Dinding --");
+      Object.keys(TEBAL).forEach(function (k) { opsi(selTebal, k, TEBAL[k].nama); });
+      opsi(selMutu, "", "-- Pilih Mutu Pekerjaan --");
+      Object.keys(MUTU).forEach(function (k) { opsi(selMutu, k, MUTU[k].nama); });
+
+      Object.keys(TEBAL).forEach(function (t) {
+        var tbody = document.querySelector("#tabel-" + t + " tbody");
+        Object.keys(MUTU).forEach(function (m) {
+          var c = KOEF[t][m];
+          var tr = document.createElement("tr");
+          [MUTU[m].nama, fmt(c.bata, 0, 2), fmt(c.pasir, 2, 3), fmt(c.semen, 0, 2)].forEach(function (teks) {
+            var td = document.createElement("td");
+            td.textContent = teks;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      });
+    })();
+
+    function setPesan(idInput, idPesan, teks, info) {
+      var p = el(idPesan);
+      p.textContent = teks;
+      p.className = info ? "pesan info" : "pesan";
+      if (teks && !info) el(idInput).setAttribute("aria-invalid", "true");
+      else el(idInput).removeAttribute("aria-invalid");
+    }
+
+    function tampilKeterangan() {
+      var m = MUTU[selMutu.value];
+      var p = el("ket-mutu");
+      if (m) { p.textContent = "Keterangan: " + m.ket; p.hidden = false; }
+      else { p.textContent = ""; p.hidden = true; }
+    }
+
+    function sembunyikanHasil() {
+      var h = el("hasil");
+      h.hidden = true;
+      h.classList.remove("muncul");
+    }
+
+    function hitung() {
+      var cek = validasi(inVolume.value, selTebal.value, selMutu.value);
+      setPesan("volume", "err-volume", cek.err.volume);
+      setPesan("tebal", "err-tebal", cek.err.tebal);
+      setPesan("mutu", "err-mutu", cek.err.mutu);
+
+      if (!cek.ok) {
+        sembunyikanHasil();
+        (cek.err.volume ? inVolume : cek.err.tebal ? selTebal : selMutu).focus();
+        return;
+      }
+
+      var t = TEBAL[selTebal.value];
+      var m = MUTU[selMutu.value];
+      var h = hitungMaterial(cek.volume, selTebal.value, selMutu.value);
+
+      el("r-volume").textContent = fmt(cek.volume, 0, 2);
+      el("r-tebal").textContent = t.nama;
+      el("r-mutu").textContent = m.nama + " (" + m.ket + ")";
+      el("h-bata").textContent = fmt(h.bata, 0, 0);
+      el("h-pasir").textContent = fmt(h.pasir, 2, 3);
+      el("h-semen").textContent = fmt(h.semen, 0, 2);
+      el("h-sak").textContent = fmt(h.sak, 0, 0);
+
+      var box = el("hasil");
+      box.hidden = false;
+      box.classList.remove("muncul");
+      void box.offsetWidth;            // ulangi animasi
+      box.classList.add("muncul");
+    }
+
+    function reset() {
+      inVolume.value = "";
+      selTebal.value = "";
+      selMutu.value = "";
+      setPesan("volume", "err-volume", "");
+      setPesan("tebal", "err-tebal", "");
+      setPesan("mutu", "err-mutu", "");
+      tampilKeterangan();
+      sembunyikanHasil();
+      inVolume.focus();
+    }
+
+    // Ganti tebal: pilihan mutu dipertahankan, hasil lama disembunyikan
+    selTebal.addEventListener("change", function () {
+      sembunyikanHasil();
+      setPesan("tebal", "err-tebal", "");
+    });
+
+    // Ganti mutu: tampilkan keterangan, ingatkan jika tebal belum dipilih
+    selMutu.addEventListener("change", function () {
+      sembunyikanHasil();
+      tampilKeterangan();
+      setPesan("mutu", "err-mutu", "");
+      if (selMutu.value && !selTebal.value) {
+        setPesan("tebal", "err-tebal", "Pilih tebal dinding terlebih dahulu agar koefisien yang digunakan sesuai.", true);
+      }
+    });
+
+    el("btn-hitung").addEventListener("click", hitung);
+    el("btn-reset").addEventListener("click", reset);
+
+    // Enter pada input volume atau dropdown = Hitung Material
+    [inVolume, selTebal, selMutu].forEach(function (x) {
+      x.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); hitung(); }
+      });
+    });
+  </script>
+</body>
+</html>
